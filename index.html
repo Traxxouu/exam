@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WebCraft Solutions : réalisations clients et catalogue de formations techniques">
+    <title>WebCraft Solutions Accueil</title>
+    <!-- je met le cdn de bootstrap car c'est autoriser par le professeur -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- Police Manrope qui viens de Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;display=swap">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="accueil">
+    <header class="entete">
+        <nav class="navbar navbar-expand-md" aria-label="Menu principal">
+            <div class="container">
+                <a class="navbar-brand logo" href="index.html">WebCraft Solutions</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Afficher ou masquer le menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav ms-auto gap-md-3">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#accueil">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#projets">Projets</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#formations">Formations</a></li>
+                        <li class="nav-item"><a class="nav-link" href="inscription.html">Inscription</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="accueil" class="bandeau" aria-labelledby="titre-accueil">
+            <div class="container">
+                <h1 id="titre-accueil" class="bandeau-titre">Portail WebCraft Solutions</h1>
+                <p class="bandeau-texte">portfolio clients et catalogue de formations</p>
+            </div>
+        </section>
+
+        <!--Projets clients api 1-->
+        <section id="projets" class="section" aria-labelledby="titre-projets">
+            <div class="container">
+                <h2 id="titre-projets">Projets clients</h2>
+                <p class="section-intro">Voici les projets clients</p>
+                <div class="barre-filtres row g-3" role="search" aria-label="Filtrer les projets">
+                    <div class="col-12 col-md-6">
+                        <label for="recherche-projet" class="form-label">Rechercher</label>
+                        <input type="search" id="recherche-projet" class="form-control" placeholder="Recherche">
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <label for="choix-techno-projet" class="form-label">Technologie</label>
+                        <select id="choix-techno-projet" class="form-select">
+                            <option value="">Toutes les technologies</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <label for="choix-categorie-projet" class="form-label">Catégorie</label>
+                        <select id="choix-categorie-projet" class="form-select">
+                            <option value="">Toutes les catégories</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="chargement-projets" class="chargement" role="status"><div class="chargement-barre"></div><p class="chargement-texte">Chargement des projets…</p></div>
+                <p id="alerte-projets" class="alerte" role="alert" hidden></p>
+                <div id="liste-projets" class="liste-cartes" aria-live="polite"></div>
+            </div>
+        </section>
+
+         <!--Catalogue formations api 1-->
+        <section id="formations" class="section section-grise" aria-labelledby="titre-formations">
+            <div class="container">
+                <h2 id="titre-formations">Catalogue de formations</h2>
+                <p class="section-intro">Notre catalogue de formations</p>
+                <div class="barre-filtres row g-3" role="search" aria-label="Filtrer les formations">
+                    <div class="col-12 col-md-3">
+                        <label for="recherche-formation" class="form-label">Rechercher</label>
+                        <input type="search" id="recherche-formation" class="form-control" placeholder="Recherche">
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <label for="choix-categorie-formation" class="form-label">Catégorie</label>
+                        <select id="choix-categorie-formation" class="form-select">
+                            <option value="">Toutes</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <label for="choix-niveau-formation" class="form-label">Niveau</label>
+                        <select id="choix-niveau-formation" class="form-select">
+                            <option value="">Tous</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <label for="choix-techno-formation" class="form-label">Technologie</label>
+                        <select id="choix-techno-formation" class="form-select">
+                            <option value="">Toutes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="chargement-formations" class="chargement" role="status"><div class="chargement-barre"></div><p class="chargement-texte">Chargement des formations…</p></div>
+                <p id="alerte-formations" class="alerte" role="alert" hidden></p>
+                <div id="liste-formations" class="liste-cartes" aria-live="polite"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="modal fade" id="fenetre-projet" role="dialog" tabindex="-1" aria-labelledby="fenetre-projet-titre" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title h5" id="fenetre-projet-titre">Projet</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer la fenêtre"></button>
+                </div>
+                <div class="modal-body" id="fenetre-projet-contenu"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="fenetre-formation" role="dialog" tabindex="-1" aria-labelledby="fenetre-formation-titre" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title h5" id="fenetre-formation-titre">Formation</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer la fenêtre"></button>
+                </div>
+                <div class="modal-body" id="fenetre-formation-contenu"></div>
+                <div class="modal-footer">
+                    <a href="inscription.html" class="bouton bouton-plein">S'inscrire maintenant</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="pied">
+        <div class="container pied-contenu">
+            <p>&copy; 2026 WebCraft Solutions - Tous droits réservés</p>
+            <ul class="reseaux" aria-label="Nos réseaux sociaux">
+                <li><a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn, s'ouvre dans un nouvel onglet">LinkedIn</a></li>
+                <li><a href="https://x.com" target="_blank" rel="noopener" aria-label="X, s'ouvre dans un nouvel onglet">X</a></li>
+                <li><a href="https://github.com" target="_blank" rel="noopener" aria-label="GitHub, s'ouvre dans un nouvel onglet">GitHub</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

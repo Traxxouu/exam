@@ -1,0 +1,552 @@
+:root {
+    --encre: #16201c;            
+    --encre-douce: #4f5b56;     
+    --papier: #ffffff;
+    --fond: #f5f7f6;
+    --trait: #dde3e0;            
+    --trait-champ: #7d8985;      
+    --emeraude: #0ce2a6;        
+    --emeraude-fonce: #04704f;   
+    --emeraude-nuit: #034d37;    
+    --emeraude-pale: #e3faf2;
+    --rouge: #b42318;            
+    --rouge-pale: #fd958a;
+    --arrondi: 6px;
+    --ombre-survol: 0 10px 24px rgba(22, 32, 28, 0.08);
+    --duree: 0.25s;
+    --police: 'Manrope', 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    font-family: var(--police);
+    background-color: var(--papier);
+    color: var(--encre);
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+a {
+    color: var(--emeraude-fonce);
+}
+
+:focus-visible {
+    outline: 3px solid var(--emeraude-fonce);
+    outline-offset: 2px;
+}
+
+.entete {
+    background-color: var(--papier);
+    border-bottom: 1px solid var(--trait);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 700;
+    color: var(--encre);
+}
+
+.logo::before {
+    content: "";
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    background-color: var(--emeraude);
+}
+
+.entete .nav-link {
+    color: var(--encre-douce);
+    border-bottom: 2px solid transparent;
+    transition: color var(--duree), border-color var(--duree);
+}
+
+.entete .nav-link:hover,
+.entete .nav-link.active {
+    color: var(--encre);
+    border-bottom-color: var(--emeraude);
+}
+
+.bandeau {
+    padding: 3rem 0;
+    background-color: var(--fond);
+    border-bottom: 1px solid var(--trait);
+}
+
+.bandeau-titre {
+    max-width: 18ch;
+    font-size: 2rem;
+    animation: entree 0.8s ease-out both;
+}
+
+.bandeau-texte {
+    max-width: 55ch;
+    margin: 0;
+    color: var(--encre-douce);
+    font-size: 1.05rem;
+    animation: entree 0.8s 0.2s ease-out both;
+}
+
+@keyframes entree {
+    from {
+        opacity: 0;
+        transform: translateX(-24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.section {
+    padding: 3rem 0;
+}
+
+.section-grise {
+    background-color: var(--fond);
+}
+
+.section-intro {
+    color: var(--encre-douce);
+    margin-bottom: 1.5rem;
+}
+
+.barre-filtres {
+    margin: 0 0 2rem;
+    padding: 0.5rem 1rem 1rem;
+    background-color: var(--papier);
+    border: 1px solid var(--trait);
+    border-radius: var(--arrondi);
+}
+
+.form-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--encre-douce);
+}
+
+.form-control,
+.form-select {
+    border-color: var(--trait-champ);
+    border-radius: var(--arrondi);
+    transition: border-color var(--duree), box-shadow var(--duree);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--emeraude-fonce);
+    box-shadow: 0 0 0 3px var(--emeraude-pale);
+}
+
+/* J'ai recuperer le style sur uiverse.io */
+.chargement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    max-width: 350px;
+    height: 180px;
+    margin: 2rem auto;
+    padding: 30px;
+    background: var(--papier);
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px -5px var(--trait-champ);
+}
+
+.chargement-barre {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    background: var(--trait);
+    border-radius: 10px;
+}
+
+.chargement-barre::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 50%;
+    height: 10px;
+    background: var(--encre);
+    border-radius: 10px;
+    animation: loading 0.6s alternate infinite;
+}
+
+.chargement-texte {
+    margin: 0;
+    font-size: 18px;
+    color: var(--encre);
+    animation: bit 0.6s alternate infinite;
+}
+
+@keyframes bit {
+    from {
+        opacity: 0.3;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes loading {
+    0% {
+        left: 0%;
+    }
+    100% {
+        left: 50%;
+    }
+}
+
+/* message */
+.alerte {
+    padding: 0.9rem 1rem;
+    color: var(--rouge);
+    background-color: var(--rouge-pale);
+    border-left: 4px solid var(--rouge);
+    border-radius: var(--arrondi);
+}
+
+.aucun-resultat {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 2rem;
+    text-align: center;
+    color: var(--encre-douce);
+    border: 1px dashed var(--trait-champ);
+    border-radius: var(--arrondi);
+}
+
+.liste-cartes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
+
+.fiche {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: var(--papier);
+    border: 1px solid var(--trait);
+    border-radius: var(--arrondi);
+    transition: border-color var(--duree), box-shadow var(--duree), transform var(--duree);
+}
+
+.fiche:hover {
+    border-color: var(--emeraude);
+    box-shadow: var(--ombre-survol);
+    transform: translateY(-3px);
+}
+
+.fiche-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-bottom: 1px solid var(--trait);
+}
+
+.fiche-corps {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1.25rem;
+}
+
+.etiquette {
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--emeraude-fonce);
+}
+
+.fiche-titre {
+    margin: 0;
+    font-size: 1.15rem;
+}
+
+.fiche-ligne {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--encre-douce);
+}
+
+.fiche-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+}
+
+.pastilles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.pastille {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    font-size: 0.75rem;
+    color: var(--encre);
+    border: 1px solid var(--trait-champ);
+    border-radius: 999px;
+}
+
+.pastille-niveau {
+    font-weight: 600;
+    color: var(--emeraude-nuit);
+    background-color: var(--emeraude-pale);
+    border-color: transparent;
+}
+
+.statut {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.statut::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: currentColor;
+}
+
+.statut-ok {
+    color: var(--emeraude-fonce);
+}
+
+.statut-complet {
+    color: var(--rouge);
+}
+
+.bouton {
+    display: inline-block;
+    padding: 0.55rem 1.1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid var(--emeraude-fonce);
+    border-radius: var(--arrondi);
+    transition: background-color var(--duree), color var(--duree), border-color var(--duree);
+}
+
+.bouton-plein {
+    color: var(--papier);
+    background-color: var(--emeraude-fonce);
+}
+
+.bouton-plein:hover {
+    color: var(--papier);
+    background-color: var(--emeraude-nuit);
+    border-color: var(--emeraude-nuit);
+}
+
+.bouton-contour {
+    color: var(--emeraude-fonce);
+    background-color: transparent;
+}
+
+.bouton-contour:hover {
+    color: var(--papier);
+    background-color: var(--emeraude-fonce);
+}
+
+.modal-content {
+    border: none;
+    border-radius: var(--arrondi);
+}
+
+.modal-header,
+.modal-footer {
+    border-color: var(--trait);
+}
+
+.fenetre-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-bottom: 1rem;
+    object-fit: cover;
+    border-radius: var(--arrondi);
+}
+
+.infos {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.4rem 1rem;
+    margin: 1rem 0;
+}
+
+.infos dt {
+    font-weight: 600;
+    color: var(--encre-douce);
+}
+
+.infos dd {
+    margin: 0;
+}
+
+.fenetre-sous-titre {
+    margin-top: 1.25rem;
+    font-size: 1rem;
+}
+
+/* formulaire */
+.page-formulaire {
+    padding: 3rem 0;
+    background-color: var(--fond);
+}
+
+.titre-page {
+    font-size: 1.75rem;
+}
+
+.panneau-formulaire {
+    max-width: 760px;
+    padding: 1.5rem;
+    background-color: var(--papier);
+    border: 1px solid var(--trait);
+    border-radius: var(--arrondi);
+}
+
+.panneau-formulaire fieldset {
+    margin-bottom: 2rem;
+}
+
+.panneau-formulaire legend {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    border-bottom: 1px solid var(--trait);
+}
+
+.facultatif {
+    font-weight: 400;
+    color: var(--encre-douce);
+}
+
+.asterisque {
+    color: var(--rouge);
+}
+
+.form-control.is-invalid,
+.form-select.is-invalid {
+    border-color: var(--rouge);
+}
+
+.form-control.is-valid,
+.form-select.is-valid {
+    border-color: var(--emeraude-fonce);
+}
+
+.invalid-feedback {
+    margin-bottom: 0;
+    font-size: 0.85rem;
+    color: var(--rouge);
+}
+
+/* footer */
+.pied {
+    padding: 1.5rem 0;
+    font-size: 0.9rem;
+    color: var(--encre-douce);
+    background-color: var(--papier);
+    border-top: 1px solid var(--trait);
+}
+
+.pied-contenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: center;
+}
+
+.pied-contenu p {
+    margin: 0;
+}
+
+.reseaux {
+    display: flex;
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.reseaux a {
+    color: var(--encre);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color var(--duree), border-color var(--duree);
+}
+
+.reseaux a:hover {
+    color: var(--emeraude-fonce);
+    border-bottom-color: currentColor;
+}
+
+/*Mobile*/
+@media (min-width: 320px) and (max-width: 767px) {
+    .fiche-actions .bouton {
+        flex: 1;
+    }
+}
+
+/* tablette et ordi */
+@media (min-width: 768px) {
+    .bandeau {
+        padding: 5rem 0;
+    }
+
+    .bandeau-titre {
+        font-size: 2.75rem;
+    }
+
+    .section {
+        padding: 4rem 0;
+    }
+
+    .liste-cartes {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+
+    .panneau-formulaire {
+        padding: 2.5rem;
+    }
+
+    .pied-contenu {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+}
+
+/* pour w3c animation*/
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
